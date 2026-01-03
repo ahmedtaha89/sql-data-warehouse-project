@@ -1,0 +1,50 @@
+Data Warehouse Project – End-to-End Sales Analytics 
+🔹 Project Overview : Designed and implemented an end-to-end Data Warehouse to analyze sales performance, customer behavior, and product trends using SQL Server. The project follows industry-standard ETL and dimensional modeling practices and supports analytical reporting.
+
+🔹 Objective : Centralize transactional sales data
+ Enable fast analytical queries
+ Generate insights on:
+ Sales trends over time
+ Customer demographics
+ Product performance
+🔹 Architecture Used : Medallion Architecture
+ Bronze Layer – Raw source data
+ Silver Layer – Cleaned & transformed data
+ Gold Layer – Business-ready analytical tables
+
+🔹 Data Model : Used Star Schema for optimized querying.
+
+🔹 ETL Process: 
+Extracted data from CSV / transactional sources
+Transformed data using
+Data type standardization
+Null handling
+Duplicate removal
+Business logic calculations
+Loaded data into structured warehouse tables using stored Procedures, CTEs.
+
+🔹 SQL Techniques Used : 
+Complex JOINs across fact and dimension tables
+CTEs for readable and reusable logic
+Window functions: SUM() OVER() for running totals, RANK() for product ranking
+Date functions: DATETRUNC, DATEDIFF
+Aggregations and KPI calculations
+
+🔹 Key Business Insights Generated
+Monthly and yearly sales trends
+Top-performing products and categories
+Customer age-wise sales distribution
+Running total and cumulative sales analysis
+High-value customers identification
+
+🔹 Performance Optimization
+Implemented: Proper indexing on fact tables
+Surrogate keys
+
+🔹 Tools & Technologies
+SQL Server
+Advanced SQL (CTEs, Window Functions)
+Power BI (for visualization)
+Excel (data validation & analysis)
+
+My GitHub Link : https://lnkd.in/gQ3M87Ps
