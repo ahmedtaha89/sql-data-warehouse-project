@@ -1,40 +1,50 @@
 /*
-
-====================================================================
-						CREATE DATABASE AND SCHEMA 
-====================================================================
-
-Script Purpose:
-This script creates DATABASE called DataWareHouseProject AND checking if it EXISTS OR NOT 
-AND SCHEMAS => bronze,silver,gold
-
-Warning:
-If DATABASE EXISTS these script will DELETE AND ReCreate it AND remove ALL data be careful AND make backups before run script 
-
+=========================================================================
+    Create SalesDataWareHouse DATABASE with Medallion Architecture
+=========================================================================
+Creates Bronze, Silver, and Gold schemas for data warehouse layers
+WARNING: This will DROP the existing database if it exists!
+=========================================================================
 */
 
-use master;
-Go
-
--- Checking the DATABASE Exists OR NOT 
-if EXISTS (SELECT name FROM sys.databases WHERE name = 'DataWareHouseProject')
-begin 
-    ALTER DATABASE DataWareHouseProject SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-    DROP DATABASE DataWareHouseProject;
-END;
+USE master;
 GO
 
-
-
--- Create the 'DataWareHouseProject' database
-CREATE DATABASE DataWareHouseProject;
+-- Close all connections and drop database if exists
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'SalesDataWareHouse')
+BEGIN
+    PRINT 'Dropping existing SalesDataWareHouse database...';
+    ALTER DATABASE SalesDataWareHouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE SalesDataWareHouse;
+    PRINT 'Database dropped successfully.';
+END
 GO
-use DataWareHouseProject;
+
+-- Create new database
+PRINT 'Creating SalesDataWareHouse database...';
+CREATE DATABASE SalesDataWareHouse;
 GO
 
+USE SalesDataWareHouse;
+GO
+
+-- Create Bronze Schema (Raw Data Layer)
+PRINT 'Creating Bronze schema...';
+GO
 CREATE SCHEMA bronze;
-Go
-CREATE SCHEMA silver;
-Go
-CREATE SCHEMA glod;
+GO
 
+-- Create Silver Schema (Cleansed Data Layer)
+PRINT 'Creating Silver schema...';
+GO
+CREATE SCHEMA silver;
+GO
+
+-- Create Gold Schema (Business Layer)
+PRINT 'Creating Gold schema...';
+GO
+CREATE SCHEMA gold;
+GO
+
+PRINT 'SalesDataWareHouse setup completed successfully!';
+GO
